@@ -56,7 +56,7 @@ export function ProductGroupForm() {
       }
       navigate('/configuration/product-groups')
     } catch (error) {
-      console.error('Failed to save persona:', error)
+      console.error('Failed to save model:', error)
     }
   }
 

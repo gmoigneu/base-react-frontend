@@ -6,19 +6,9 @@ export function ConfigurationPage() {
 
   const items = [
     {
-      title: "Personas",
-      href: "/configuration/personas",
-      description: "Configure your personas and their settings.",
-    },
-    {
-      title: "Industries",
-      href: "/configuration/industries",
-      description: "Configure your industries and their settings.",
-    },
-    {
-      title: "Product Groups",
-      href: "/configuration/product-groups",
-      description: "Configure your product groups and their settings.",
+      title: "Models",
+      href: "/configuration/models",
+      description: "Configure your models and their settings.",
     },
   ]
 

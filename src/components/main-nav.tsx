@@ -13,11 +13,6 @@ const navigationItems = [
       icon: HomeIcon,
     },
     {
-      title: "Products",
-      href: "/products",
-      icon: PackageIcon,
-    },
-    {
       title: "Configuration",
       href: "/configuration",
       icon: MixerHorizontalIcon,

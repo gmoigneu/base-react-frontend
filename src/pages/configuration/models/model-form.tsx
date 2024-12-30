@@ -14,18 +14,18 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { useIndustries } from '@/lib/hooks/use-industries'
-import { Industry } from '@/lib/types'
+import { useModels } from '@/lib/hooks/use-model'
+import { Model } from '@/lib/types'
 
 const formSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   description: z.string().min(1, 'Description is required'),
 })
 
-export function IndustryForm() {
+export function ModelForm() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { industries, createIndustry, updateIndustry } = useIndustries()
+  const { models, createModel, updateModel } = useModels()
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -37,24 +37,24 @@ export function IndustryForm() {
 
   useEffect(() => {
     if (id) {
-      const industry = industries.find((i: Industry) => parseInt(i.id) === parseInt(id))
-      if (industry) {
+      const model = models.find((m: Model) => parseInt(m.id) === parseInt(id))
+      if (model) {
         form.reset({
-          name: industry.name,
-          description: industry.description,
+          name: model.name,
+          description: model.description,
         })
       }
     }
-  }, [id, industries, form])
+  }, [id, models, form])
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       if (id) {
-        await updateIndustry(id, values)
+        await updateModel(id, values)
       } else {
-        await createIndustry(values)
+        await createModel(values)
       }
-      navigate('/configuration/industries')
+      navigate('/configuration/models')
     } catch (error) {
       console.error('Failed to save persona:', error)
     }
@@ -63,7 +63,7 @@ export function IndustryForm() {
   return (
     <div className="space-y-4">
       <h2 className="text-3xl font-bold tracking-tight">
-        {id ? 'Edit' : 'Create'} Industry
+        {id ? 'Edit' : 'Create'} Model
       </h2>
       
       <Form {...form}>
@@ -101,7 +101,7 @@ export function IndustryForm() {
             <Button
               type="button"
               variant="outline"
-              onClick={() => navigate('/configuration/industries')}
+              onClick={() => navigate('/configuration/models')}
             >
               Cancel
             </Button>

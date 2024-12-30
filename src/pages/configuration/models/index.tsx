@@ -9,43 +9,41 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'  
-import { useProducts } from '@/lib/hooks/use-product'
+} from '@/components/ui/table'
+import { useModels } from '@/lib/hooks/use-model'
 import { PlusIcon, PencilIcon, TrashIcon, EyeIcon } from 'lucide-react'
 import { useDebounce } from '@/lib/hooks/use-debounce'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
-import { Product } from '@/lib/types'
+import { Model } from '@/lib/types'
 
-export function ProductsPage() {
+export function ModelsPage() {
   const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState('')
   const debouncedSearch = useDebounce(searchTerm, 300)
   
-  const { products, fetchProducts, deleteProduct } = useProducts()
-    
+  const { models, fetchModels, deleteModel } = useModels()
+  
   useEffect(() => {
-    fetchProducts()
-  }, [fetchProducts])
+    fetchModels()
+  }, [fetchModels])
 
-  const filteredProducts = products.filter((product: Product) => 
-    product.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-    product.productGroup.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-    product.sku.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-    product.description.toLowerCase().includes(debouncedSearch.toLowerCase())
+  const filteredModels = models.filter((model: Model) => 
+    model.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+    model.description.toLowerCase().includes(debouncedSearch.toLowerCase())
   )
 
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold tracking-tight">Products</h2>
+        <h2 className="text-3xl font-bold tracking-tight">Models</h2>
         <Button onClick={() => navigate('new')}>
-          <PlusIcon className="mr-2 h-4 w-4" />
-          Create Product
+        <PlusIcon className="mr-2 h-4 w-4" />
+          Create Model
         </Button>
       </div>
 
       <Input
-        placeholder="Search products..."
+        placeholder="Search models..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="max-w-sm"
@@ -57,34 +55,26 @@ export function ProductsPage() {
             <TableRow>
               <TableHead>Name</TableHead>
               <TableHead>Description</TableHead>
-              <TableHead>Product Group</TableHead>
-              <TableHead>Available</TableHead>
-              <TableHead>SKU</TableHead>
-              <TableHead>Variance</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredProducts.map((product: Product) => (
-              <TableRow key={product.id}>
-                <TableCell>{product.name}</TableCell>
-                <TableCell>{product.description}</TableCell>
-                <TableCell>{product.productGroup.name}</TableCell>
-                <TableCell>{product.available ? 'Yes' : 'No'}</TableCell>
-                <TableCell>{product.sku}</TableCell>
-                <TableCell>{product.variance}</TableCell>
+            {filteredModels.map((model) => (
+              <TableRow key={model.id}>
+                <TableCell>{model.name}</TableCell>
+                <TableCell>{model.description}</TableCell>
                 <TableCell className="space-x-2">
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => navigate(`${product.id}`)}
+                    onClick={() => navigate(`${model.id}`)}
                   >
                     <EyeIcon className="h-4 w-4" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => navigate(`${product.id}/edit`)}
+                    onClick={() => navigate(`${model.id}/edit`)}
                   >
                     <PencilIcon className="h-4 w-4" />
                   </Button>
@@ -96,14 +86,14 @@ export function ProductsPage() {
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
-                        <AlertDialogTitle>Delete Product</AlertDialogTitle>
+                        <AlertDialogTitle>Delete Model</AlertDialogTitle>
                         <AlertDialogDescription>
-                          Are you sure you want to delete this product? This action cannot be undone.
+                          Are you sure you want to delete this model? This action cannot be undone.
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
                         <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction onClick={() => deleteProduct(product.id)}>
+                        <AlertDialogAction onClick={() => deleteModel(model.id)}>
                           Delete
                         </AlertDialogAction>
                       </AlertDialogFooter>

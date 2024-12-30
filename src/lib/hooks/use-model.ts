@@ -18,25 +18,25 @@ export function useModels() {
     }
   }, [setModels, setIsLoadingModels, setError])
 
-  const createModel = async (persona: Omit<Model, 'id' | 'createdAt' | 'updatedAt'>) => {
-    const newModel = await apiService.post<Model>('/api/models', persona)
+  const createModel = async (model: Omit<Model, 'id' | 'createdAt' | 'updatedAt'>) => {
+    const newModel = await apiService.post<Model>('/api/models', model)
     if (newModel) {
       addModel(newModel)
     }
     return newModel
   }
 
-  const updateModel = async (id: string, persona: Partial<Model>) => {
-    const updatedModel = await apiService.put<Model>(`/api/models/${id}`, persona)
+  const updateModel = async (id: string, model: Partial<Model>) => {
+    const updatedModel = await apiService.put<Model>(`/api/models/${id}`, model)
     if (updatedModel) {
-      setModels(models.map((p: Model) => p.id === id ? updatedModel : p))
+      setModels(models.map((m: Model) => m.id === id ? updatedModel : m))
     }
     return updatedModel
   }
 
   const deleteModel = async (id: string) => {
     await apiService.delete(`/api/models/${id}`)
-    setModels(models.filter((p: Model) => p.id !== id))
+    setModels(models.filter((m: Model) => m.id !== id))
   }
 
   return {
