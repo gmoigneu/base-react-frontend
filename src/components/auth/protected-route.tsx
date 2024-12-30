@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom"
 import { ReactNode } from "react"
+import { Outlet } from "react-router";
 
 interface ProtectedRouteProps {
   children: ReactNode
@@ -14,5 +15,5 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
     return <Navigate to="/login" state={{ from: location }} replace />
   }
 
-  return children
+  return <Outlet />
 } 
