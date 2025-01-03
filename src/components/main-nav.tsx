@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils.ts"
 import { Link } from "react-router"
 import { HomeIcon, MixerHorizontalIcon } from '@radix-ui/react-icons'
 import { PackageIcon } from 'lucide-react'
@@ -11,6 +11,11 @@ const navigationItems = [
       title: "Dashboard",
       href: "/",
       icon: HomeIcon,
+    },
+    {
+      title: "Reports",
+      href: "/reports",
+      icon: PackageIcon,
     },
     {
       title: "Configuration",

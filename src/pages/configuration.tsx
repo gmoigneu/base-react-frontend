@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card.tsx"
 import { useNavigate } from "react-router"
 
 export function ConfigurationPage() {

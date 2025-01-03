@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { GuestLayout } from "@/components/layouts/guest-layout"
-import { Label } from "@/components/ui/label"
-import { authService } from "@/lib/api/auth-service"
+import { Button } from "@/components/ui/button.tsx"
+import { Input } from "@/components/ui/input.tsx"
+import { GuestLayout } from "@/components/layouts/guest-layout.tsx"
+import { Label } from "@/components/ui/label.tsx"
+import { authService } from "@/lib/api/auth-service.ts"
 import { useNavigate } from "react-router"
 
 export function LoginPage() {
@@ -15,8 +15,8 @@ export function LoginPage() {
     event.preventDefault()
     setIsLoading(true)
 
-    const email = event.target.email.value
-    const password = event.target.password.value
+    const email = (event.target as HTMLFormElement).email.value
+    const password = (event.target as HTMLFormElement).password.value
 
     authService.login({ email, password }).then(() => {
       navigate('/')

@@ -1,6 +1,6 @@
-import { useNarwhalStore } from '@/lib/store/narwhal-store'
-import { apiService } from '@/lib/api/api-service'
-import { Model } from '../types'
+import { useNarwhalStore } from '@/lib/store/narwhal-store.ts'
+import { apiService } from '@/lib/api/api-service.ts'
+import { Model } from '../types.ts'
 
 export const storeService = {
   async populateStore() {
@@ -26,7 +26,7 @@ export const storeService = {
     const store = useNarwhalStore.getState()
     
     try {
-      store.setLoading(true)
+      store.setIsLoadingModels(true)
       const models = await apiService.get<Model[]>('/api/models')
       store.setModels(models)
       store.setError(null)
@@ -34,7 +34,7 @@ export const storeService = {
       store.setError(error instanceof Error ? error.message : 'Failed to refresh models')
       console.error('Failed to refresh store:', error)
     } finally {
-      store.setLoading(false)
+      store.setIsLoadingModels(false)
     }
   }
 } 

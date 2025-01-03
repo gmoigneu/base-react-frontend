@@ -1,7 +1,7 @@
 import { useEffect } from "react"
-import { MainNav } from "@/components/main-nav"
-import { UserNav } from "@/components/user-nav"
-import { storeService } from "@/lib/services/store-service"
+import { MainNav } from "@/components/main-nav.tsx"
+import { UserNav } from "@/components/user-nav.tsx"
+import { storeService } from "@/lib/services/store-service.ts"
 import { Outlet } from "react-router";
 
 

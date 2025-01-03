@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { useModels } from '@/lib/hooks/use-model'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useModels } from '@/lib/hooks/use-model.ts'
+import { Button } from '@/components/ui/button.tsx'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.tsx'
 import { PencilIcon } from 'lucide-react'
-import { Model } from '@/lib/types'
+import { Model } from '@/lib/types.ts'
 
 export function ModelView() {
   const { id } = useParams()

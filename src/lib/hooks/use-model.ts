@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
-import { useNarwhalStore } from '@/lib/store/narwhal-store'
-import { apiService } from '@/lib/api/api-service'
-import { Model } from '@/lib/types'
+import { useNarwhalStore } from '@/lib/store/narwhal-store.ts'
+import { apiService } from '@/lib/api/api-service.ts'
+import { Model } from '@/lib/types.ts'
 
 export function useModels() {
   const { models, setModels, addModel, setIsLoadingModels, setError } = useNarwhalStore()

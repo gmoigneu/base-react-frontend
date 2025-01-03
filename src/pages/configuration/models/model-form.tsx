@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button.tsx'
 import {
   Form,
   FormControl,
@@ -11,11 +11,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { useModels } from '@/lib/hooks/use-model'
-import { Model } from '@/lib/types'
+} from '@/components/ui/form.tsx'
+import { Input } from '@/components/ui/input.tsx'
+import { Textarea } from '@/components/ui/textarea.tsx'
+import { useModels } from '@/lib/hooks/use-model.ts'
+import { Model } from '@/lib/types.ts'
 
 const formSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -56,7 +56,7 @@ export function ModelForm() {
       }
       navigate('/configuration/models')
     } catch (error) {
-      console.error('Failed to save persona:', error)
+      console.error('Failed to save model`:', error)
     }
   }
 

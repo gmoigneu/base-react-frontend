@@ -2,7 +2,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/components/ui/avatar"
+} from "@/components/ui/avatar.tsx"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,8 +11,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { authService } from "@/lib/api/auth-service"
+} from "@/components/ui/dropdown-menu.tsx"
+import { authService } from "@/lib/api/auth-service.ts"
 
 export function UserNav() {
   return (

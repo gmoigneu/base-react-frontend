@@ -1,6 +1,6 @@
 import { create } from 'zustand'
-import { devtools, StateCreator } from 'zustand/middleware'
-import { Model } from '@/lib/types'
+import { devtools } from 'zustand/middleware'
+import { Model } from '@/lib/types.ts'
 
 interface NarwhalState {
   error: string | null
@@ -19,7 +19,7 @@ type NarwhalStore = NarwhalState & NarwhalActions
 
 export const useNarwhalStore = create<NarwhalStore>()(
   devtools(
-    (set: StateCreator<NarwhalState>) => ({
+    (set) => ({
       // Initial State
       models: [],
       isLoadingModels: false,
